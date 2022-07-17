@@ -1,0 +1,103 @@
+<div class="container my-5">
+    <button class="btn btn-info float-end text-white"  data-bs-toggle="modal" data-bs-target="#add">add note</button>
+    <div class="clearfix"></div>
+    <div class="note p-3 text-center" *ngFor="let note of notes">
+      <span class="dropdown">
+     <i class="fas fa-ellipsis-v  text-end   float-end"  id="dropdownMenuButton1" data-bs-toggle="dropdown" >
+    
+     </i>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit" (click)="edit(note._id)">edit</a></li>
+    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete" (click)="del(note._id)">delete</a></li>
+   
+  </ul>
+</span>
+          
+         <p>{{note.title}}</p>
+         <p>{{note.desc}}</p>
+        
+    </div>
+</div>
+<!-------------------------Modal---------------------------->
+  
+  <!-- Modal -->
+
+
+  <!-------------add-------------->
+
+  <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form [formGroup]="addNote" (ngSubmit)="addData(addNote)">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <input type="text"  formControlName="title" class="form-control" placeholder="title">
+         <textarea class="form-control my-3" formControlName="desc"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info">Add Note</button>
+          <button type="button" class="btn btn-secondary add-cancel" data-bs-dismiss="modal">Cancel</button>
+         
+        </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  
+
+
+  <!--------------------update------------------------->
+
+  <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="updateForm" (ngSubmit)="update(updateForm)">
+        <div class="modal-body">
+         <input type="text"  formControlName="title"  class="form-control" placeholder="title">
+         <textarea class="form-control my-3" formControlName="desc"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info">update</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <!------------------delete----->
+
+
+  <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <input type="text" class="form-control" placeholder="title">
+         <textarea class="form-control my-3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="delteNote()">Delte Note</button>
+          <button type="button" class="btn btn-secondary btn-del-2 d-none" data-bs-dismiss="modal">Cancel</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+  

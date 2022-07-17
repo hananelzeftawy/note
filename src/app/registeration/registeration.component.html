@@ -1,0 +1,32 @@
+
+<div id="signUp" >
+    <div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="first_name" placeholder="Enter first name" [class.is-valid]="registerForm.get('first_name').status=='VALID'"
+                [class.is-invalid]="registerForm.get('first_name').status=='INVALID' && registerForm.get('first_name').touched">
+                <div class="alert alert-danger" *ngIf="registerForm.get('first_name').errors &&registerForm.get('first_name').touched">
+                    <p *ngIf="registerForm.get('first_name').errors.required">requird</p>
+                    <p *ngIf="registerForm.get('first_name').errors.minlength">min length</p>
+                    <p *ngIf="registerForm.get('first_name').errors.maxlength">max length</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="last_name" placeholder="Enter last name">
+            </div>
+        </div>
+        <input type="email" class="form-control my-3" formControlName="email" placeholder="Enter your Email">
+        <div class="alert alert-danger" *ngIf="registerForm.get('email').errors && registerForm.get('email').touched"></div>
+         <div class="alert alert-danger" *ngIf="exist">already mogod</div>
+        <input type="number" class="form-control my-3" formControlName="age" placeholder="Enter your Age">
+        <input type="password" class="form-control my-3" formControlName="password" placeholder="Enter your password">
+        <button class="btn btn-info my-3 form-control border-0" [style.backgroundColor]="registerForm.invalid?'red':'gray'" type="submit" >
+            <span *ngIf="!isClicked">signUp</span>
+            <span *ngIf="isClicked">waiting</span>
+        </button>
+        <p class="text-white" *ngIf="flag">waiting</p>
+    </form>
+    </div>
+</div>
+
